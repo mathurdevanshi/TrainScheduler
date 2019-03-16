@@ -26,7 +26,6 @@ $("#sumbmitButton").on("click",function(event){
     trainName=$("#name").val();
     trainDestination=$("#destination").val();
     trainFirstTime=$("#firstTrainTime").val();
-        console.log("Train First Time",trainFirstTime);
     trainFrequency=$("#frequency").val();
     //
     $("#name").val("");
@@ -35,17 +34,11 @@ $("#sumbmitButton").on("click",function(event){
     $("#frequency").val("");
     //
     var trainFirstTimeConverted= moment(trainFirstTime, "hh:mm").subtract(1,'years');
-        console.log("NEW PART HERE TRAIN DEPART CONVERT:", trainFirstTimeConverted);
     var differenceInTime = moment().diff(moment(trainFirstTimeConverted), "minutes");
-        console.log(differenceInTime);
     var differenceInTimeRemainder= differenceInTime%trainFrequency;
-        console.log(differenceInTimeRemainder);
     minutesAway = trainFrequency-differenceInTimeRemainder;
-        console.log(minutesAway);
     minutesAway=moment().startOf('day').add(minutesAway,'minutes').format('HH:mm');
-        console.log(minutesAway);
     nextTrainTime=moment().add(minutesAway).format('HH:mm');
-        console.log(nextTrainTime);
     //
     newTrain={
         name: trainName,
@@ -72,5 +65,4 @@ $("#sumbmitButton").on("click",function(event){
         $("<td>").text(newnextTrain)
       );
     $("#addTrain").append(newRow);
-    // $("#addTrain").append(newRow);
     });  
